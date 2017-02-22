@@ -1,0 +1,78 @@
+{
+  "name": "hearmenow-server",
+  "version": "1.0.0",
+  "description": "hearmenow Server",
+  "private": true,
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leesander/hearmenow-server.git"
+  },
+  "scripts": {
+    "postinstall": "",
+    "start": "nodemon server.js",
+    "test": "mocha --reporter spec"
+  },
+  "author": "Lee Sander",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.1.4",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.0",
+    "bower": "^1.8.0",
+    "chalk": "^1.1.3",
+    "compression": "^1.6.2",
+    "connect-mongo": "^1.3.2",
+    "cron": "^1.2.1",
+    "dotenv": "^4.0.0",
+    "errorhandler": "^1.5.0",
+    "express": "^4.14.1",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.0",
+    "express-validator": "^3.1.2",
+    "handlebars": "^4.0.6",
+    "lob": "^3.9.0",
+    "lodash": "^4.17.4",
+    "lusca": "^1.4.1",
+    "moments": "0.0.2",
+    "mongoose": "^4.8.1",
+    "morgan": "^1.7.0",
+    "multer": "^1.3.0",
+    "node-sass-middleware": "^0.11.0",
+    "nodemailer": "^3.0.2",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "serve-favicon": "^2.3.2",
+    "twilio": "^2.11.1",
+    "validator": "^6.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb-base": "^10.0.0",
+    "eslint-plugin-import": "^2.1.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "sinon-mongoose": "^1.3.0",
+    "supertest": "^2.0.1"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "comma-dangle": 0,
+      "consistent-return": 0,
+      "no-param-reassign": 0,
+      "no-underscore-dangle": 0,
+      "no-shadow": 0,
+      "no-console": 0,
+      "no-plusplus": 0
+    }
+  },
+  "engines": {
+    "node": "^0.10.00",
+    "npm": "^1.4.00"
+  }
+}

@@ -103,6 +103,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Mario Jimenez** - [mario-hone](https://github.com/PurpleBooth)
 * [**Lee Sander**](https://github.com/leesander1) - *[leesander.com](https://leesander.com)*
+* [**Kevin Taing**](https://github.com/kevintaing86) - *(https://github.com/kevintaing86)*
 
 See also the list of [contributors](https://github.com/leesander1/hearmenow-server/contributors) who participated in this project.
 

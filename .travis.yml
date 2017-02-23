@@ -13,3 +13,6 @@ notifications:
 
 services:
   - mongodb
+
+on:
+  all_branchs: true

@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "Nodejs"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "7677b954-25d7-4e51-83ca-91c90f28542a"
+    app: obscure-eyrie-94072

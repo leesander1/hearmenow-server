@@ -222,7 +222,7 @@ class Person {
 
 :gift: **Credits**: [DuckDuckGo](https://duckduckgo.com/?q=es6+cheatsheet&ia=cheatsheet&iax=1) and [@DrkSephy](https://github.com/DrkSephy/es6-cheatsheet).
 
-:top: <sub>[**back to top**](#table-of-contents)</sub>
+
 
 ### <img src="http://i.stack.imgur.com/Mmww2.png" height="34" align="top"> JavaScript Date Cheatsheet
 
@@ -287,7 +287,7 @@ var today = new Date();
 var yesterday = date.setDate(date.getDate() - 1);
 ```
 
-:top: <sub>[**back to top**](#table-of-contents)</sub>
+
 
 ###Mongoose Cheatsheet
 
@@ -328,7 +328,7 @@ User.aggregate({ $group: { _id: null, total: { $sum: '$votes' } } }, (err, votes
   console.log(votesCount.total);
 });
 ```
-:top: <sub>[**back to top**](#table-of-contents)</sub>
+
 
 Deployment
 ----------

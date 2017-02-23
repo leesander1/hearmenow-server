@@ -10,3 +10,10 @@ deploy:
   api_key:
     secure: ""
     app: obscure-eyrie-94072
+
+notifications:
+  email:
+    - lee@leesander.com
+
+services:
+  - mongodb

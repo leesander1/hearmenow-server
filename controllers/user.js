@@ -353,7 +353,7 @@ exports.postForgot = (req, res, next) => {
         auth: {
           user: process.env.SENDGRID_USER,
           pass: process.env.SENDGRID_PASSWORD
-        }
+        } 
       });
       const mailOptions = {
         to: user.email,

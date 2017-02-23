@@ -57,7 +57,9 @@ mongoose.connection.on('error', () => {
 /**
  * Express configuration.
  */
+
 app.set('port', process.env.PORT || 3000);
+
 /**
 * Switch from server-side to client-side routing/views
 * (Need to handle requests with res.json not res.render)
@@ -68,6 +70,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
  */
+
 app.use(compression());
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -110,7 +113,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+//app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 /**
  * Primary app routes.
  */

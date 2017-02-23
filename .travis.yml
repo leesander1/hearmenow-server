@@ -4,14 +4,17 @@ node_js:
 
 services:
   - mongodb
-  
+
 deploy:
   provider: heroku
   api_key:
     app: obscure-eyrie-94072
 
+  tags: true
+
   on:
     branch: master
+
 
 notifications:
   email:

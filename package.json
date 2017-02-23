@@ -9,8 +9,9 @@
     "url": "https://github.com/leesander/hearmenow-server.git"
   },
   "scripts": {
-    "postinstall": "",
-    "start": "nodemon server.js",
+    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
+    "heroku-postbuild": "echo This runs afterwards.",
+    "start": "node server.js",
     "test": "mocha --reporter spec"
   },
   "author": "Lee Sander",

@@ -376,7 +376,7 @@ Changelog
 
 ## Authors
 
-* **Mario Jimenez** - [mario-hone](https://github.com/PurpleBooth)
+* [**Mario Jimenez**] - *[mariots](https://github.com/mariots)*
 * [**Lee Sander**](https://github.com/leesander1) - *[leesander.com](https://leesander.com)*
 * [**Kevin Taing**](https://github.com/kevintaing86) - *(https://github.com/kevintaing86)*
 

@@ -7,9 +7,12 @@ Hearmenow Server App
 
 **Get the Electron App**: https://hearmenowapp.com
 
-One Paragraph of project description goes here
+**Never use a work phone again.**
+Hearmenow is a open source application that allows you to take and make phone calls from your computer. This repository is the backend to our app.
+
 
 ## Getting Started
+
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -21,23 +24,14 @@ What things you need to install the software and how to install them
 Give examples
 ```
 
-### Installing
+## Developers
+To get involved with this project, you'll need to do a few things:
 
-A step by step series of examples that tell you have to get a development env running
+1. Download [Node.js](https://nodejs.org/).
+2. Clone this repository by running `git clone https://github.com/leesander1/hearmenow-server.git` in the location of your choice.
+3. Download the dependencies by running `npm install` when you're in the project directory.
+4. Visit the wiki at https://github.com/leesander1/hearmenow-server.git to learn about the developer guidelines for this project.
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
@@ -376,7 +370,7 @@ Changelog
 
 ## Authors
 
-* [**Mario Jimenez**] - *[mariots](https://github.com/mariots)*
+* **Mario Jimenez** - *[mariots](https://github.com/mariots)*
 * [**Lee Sander**](https://github.com/leesander1) - *[leesander.com](https://leesander.com)*
 * [**Kevin Taing**](https://github.com/kevintaing86) - *(https://github.com/kevintaing86)*
 

@@ -48,7 +48,7 @@
     "passport-oauth": "^1.0.0",
     "serve-favicon": "^2.3.2",
     "twilio": "^2.11.1",
-    "validator": "^6.2.1"
+    "validator": "7.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

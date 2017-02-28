@@ -18,11 +18,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisities
 
-What things you need to install the software and how to install them
+[MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
+* Run `mongo --version` and should get a response if installed correctly.
 
-```
-Give examples
-```
+[Node.js](https://nodejs.org/)
+
+[Nodemon](https://nodemon.io/)
+* (Helpful but not required)
+* Run `npm install -g nodemon` to install.
+* Can now edit package.json or simply run `nodemon server.js`
 
 ## Developers
 To get involved with this project, you'll need to do a few things:
@@ -30,34 +34,28 @@ To get involved with this project, you'll need to do a few things:
 1. Download [Node.js](https://nodejs.org/).
 2. Clone this repository by running `git clone https://github.com/leesander1/hearmenow-server.git` in the location of your choice.
 3. Download the dependencies by running `npm install` when you're in the project directory.
-4. Visit the wiki at https://github.com/leesander1/hearmenow-server.git to learn about the developer guidelines for this project.
+4. Create new '.env' file following the example.env and input your api keys and environmental variables accordingly.
 
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Tests are run using [mocha](https://mochajs.org/)
 
-### Break down into end to end tests
+### Create Tests
 
-Explain what these tests test and why
+Add new .js file to /tests folder.
 
-```
-Give an example
-```
 
-### And coding style tests
-
-Explain what these tests test and why
+### Run Test
 
 ```
-Give an example
+npm test
 ```
 
-## Built With
+## Tools Used
 
-* Atom - ergaerga
 * Time/Date - moments
-* Login - passport
+* User Management/Sessions - passport
 * DB - mongodb / mongoose mlab
 * Tasks - cron
 * Voice / SMS - twillio
@@ -65,6 +63,9 @@ Give an example
 * Notifications - google cloud messaging (polymer)
 * Front-end / Templating - Electron / Polymer & handlebars
 * package manager - npm / yarn
+
+
+### npm modules
 * async
 * bcrypt
 * connect-mongo
@@ -74,6 +75,7 @@ Give an example
 * express-validator
 * serve-favicon
 * mongoose
+* mocha
 * nodemailer
 * passport
 * passport-google-oauth

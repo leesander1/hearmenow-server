@@ -69,27 +69,55 @@ Add new .js file to /tests folder.
 
 `npm test`
 
+## Project structure
+
+| Name                               | Description / Purpose                                        |
+| ---------------------------------- | ------------------------------------------------------------ |
+| server.js                          | The main application file and entrypoint.                    |
+| **config**/passport.js             | Passport strategies and middleware to manage login.          |
+| **models**/User.js                 | Mongoose schema and model for User.                          |
+| **public**/                        | Static assets (fonts, css, js, img).                         |
+| **controllers**/api.js             | Controller for /api route and to manage twilio requests.     |
+| **controllers**/home.js            | Controller for home.                                         |
+| **controllers**/user.js            | Controller for user account management.                      |
+| **test**/                          | Folder containing all our unit tests for mocha.              |
+| example.env                        | Your API keys, tokens, passwords and database URI.           |
+| package.json                       | npm package dependencies & node config                       |
+| .travis.yml                        | Contains travis ci configuration settings                    |
+
 ## Tools Used
 
 * Time/Date - moments
 * User Management/Sessions - passport
 * DB - mongodb / mongoose mlab
-* CI - Travis CI
-* Dependency Management - David
+* CI - travis ci
+* Hosting - heroku
+* Dependency Management - david
 * Tasks - cron
 * Voice / SMS - twillio
-* Email - ?SendGrid?
-* Notifications - google cloud messaging (polymer)
-*
-* Front-end / Templating - Electron / Polymer & handlebars
-* package manager - npm / yarn
+* Email - sendGrid
+* Notifications - google cloud messaging (polymer component)
+* Front-end / Templating - electron / polymer & handlebars
+* Package Manager - npm / yarn
 
 
-### npm modules
+### Packages
+(See package.json) but at a glance, the following packages are / will be used.
+
 * async
 * bcrypt
+* chalk
+* compression
 * connect-mongo
 * dotenv
+* express
+* errorhandler
+* lodash
+* passport-local
+* moments
+* supertest
+* sinon
+* eslint
 * express-session
 * body-parser
 * express-validator
@@ -106,7 +134,9 @@ Add new .js file to /tests folder.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+1. Clone repo. We work off the development branch.
+2. Create new branch for your feature.
+3. Submit pull request for your branch into development.
 
 ## Versioning
 

@@ -33,7 +33,8 @@ dotenv.load({ path: '.env' });
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
-const tokenController = require('.controller/token');
+const tokenController = require('./controller/token');
+const callController = require('./controllers/call');
 
 /**
  * API keys and Passport configuration.
@@ -140,6 +141,7 @@ app.get('/api', apiController.getApi);
 app.get('/api/twilio', apiController.getTwilio);
 app.post('/api/twilio', apiController.postTwilio);
 app.post('/api/generateToken', tokenController.generate);
+app.post('/api/connectCall', callController.connectCall);
 
 
  /**

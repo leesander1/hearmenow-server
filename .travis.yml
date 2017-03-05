@@ -7,10 +7,9 @@ deploy:
   provider: heroku
   api_key:
     secure: ZyuejPoKgsZEUxzwLgHoMmWAZr/Jot7NvFx/HJdNkzX6Q0Oav1w/3zrryHZnkDeUnCH1VLdXwUQ4zvslI4vzgXV6zV+FSxP4UiY9y8bGdsA0LSb+gAXYWL36gSmlRGrx/4CTqsWDTR+c1/Q/I8dLyCfShdnPyM/W6cNIHtPqP2MGqnC36pR39ArIZuLJLcymOQ5t5IQnNTtZFqidM/Gcq72VCoEueIRuGlrfCCejYKOilwswiKwTs0R7WvRCylMkEf42rgnBpXYQPTAjljqe4QdsNYmCQQ+CThxGBrQRk3PBFT/nqiNcR8NF4bUHYKDInSwH/CJ8mD9NJMbnnNzAdElWw7znYkArOSbqpYt09cwBsQ6h13t5P1pVYS8KcMBDhVkF2T2pTWLT0FSsWD05hJGv6SD37p03l4tHtjhGI3GvUtUYUH4Jjc62Rf53x9IPTvlyXf508vk1I9kFo8oeQ6ZoRiWjlISXmEtQvHgwIwzz4wO6R7dt0SwSMgWbkm1OOjE7D1DCq1B9c4CHi/n5rIIzpa6tSdQXKK1/EpUsDXYomhwd+pIgdAn5KRQzz46bcXgE2b9qOy1Rqp/9smzLhkbBtxuAOex/cVhv1xafMMLmsFWUlaxiRp+h+T+Fb5LUpz2ORJ2rHPBfHOcvBSRycRQb8yLjLgj5koZS7JF9zH0=
-  app: obscure-eyrie-94072
-  on:
-    repo: leesander1/hearmenow-server
-    branch: master
+  app:
+    master: obscure-eyrie-94072
+    development: serene-island-28717
 notifications:
   email:
   - lee@leesander.com

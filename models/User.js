@@ -43,7 +43,9 @@ const userSchema = new mongoose.Schema({
       state: { type: String },
       country: { type: String }
     }
-  }
+  },
+  contacts: Array,
+  call_log: Array
 }, { timestamps: true });
 
 /**

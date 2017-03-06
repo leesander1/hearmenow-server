@@ -7,6 +7,10 @@ Hearmenow Server App
 
 **Get the Electron App**: [hearmenow-electron](https://github.com/leesander1/hearmenow-electron)
 
+**Heroku**:
+[hearmenow-development](https://serene-island-28717.herokuapp.com/)
+[hearmenow-production](https://obscure-eyrie-94072.herokuapp.com/)
+
 **Never use a work phone again.**
 Hearmenow is a open source application that allows you to take and make phone calls from your computer. This repository is the backend to our app.
 

@@ -3,6 +3,9 @@ node_js:
 - node
 services:
 - mongodb
+cache:
+  directories:
+    - node_modules
 deploy:
   provider: heroku
   api_key:

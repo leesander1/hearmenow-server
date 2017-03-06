@@ -58,7 +58,7 @@ mongoose.connection.on('error', () => {
  * Express configuration.
  */
 
-app.set('port', process.env.PORT || 3000);
+//app.set('port', process.env.PORT || 3000);
 
 /**
 * Switch from server-side to client-side routing/views

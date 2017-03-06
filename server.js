@@ -58,7 +58,7 @@ mongoose.connection.on('error', () => {
  * Express configuration.
  */
 
-//app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 
 /**
 * Switch from server-side to client-side routing/views
@@ -154,7 +154,7 @@ app.post('/api/twilio', apiController.postTwilio);
  /**
  * Start Express server.
  */
-app.listen(app.get('port'), () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('[✓ OK]'), app.get('port'), app.get('env'));
   console.log('Press CTRL-C to stop\n');
 });

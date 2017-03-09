@@ -11,7 +11,6 @@ describe('token', function() {
 
         it('should return a token', (done) => {
             var blah = request(app).get('/api/generateToken');
-            console.log(blah);
         });
     });
 });

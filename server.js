@@ -33,7 +33,7 @@ dotenv.load({ path: '.env' });
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
-const tokenController = require('./controller/token');
+const tokenController = require('./controllers/token');
 const callController = require('./controllers/call');
 
 /**
@@ -140,7 +140,7 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.get('/api', apiController.getApi);
 app.get('/api/twilio', apiController.getTwilio);
 app.post('/api/twilio', apiController.postTwilio);
-app.post('/api/generateToken', tokenController.generate);
+app.post('/api/generateToken', tokenController.generateTwilioToken);
 app.post('/api/connectCall', callController.connectCall);
 
 

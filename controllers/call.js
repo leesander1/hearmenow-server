@@ -3,7 +3,7 @@
 const express = require('express');
 const twilio = require('twilio');
 
-exports connectCall = (req, res) => {
+exports.connectCall = (req, res) => {
     var phoneNumber = req.body.phoneNumber;
     var callerId = process.env.TWILIO_PHONE_NUMBER;
     var twiml = new twilio.TwilmlResponse();

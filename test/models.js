@@ -4,8 +4,7 @@ const sinon = require('sinon');
 require('sinon-mongoose');
 
 const User = require('../models/User');
-const User = require('../models/Contact');
-const User = require('../models/User');
+const Contact = require('../models/Contact');
 
 describe('User Model', () => {
   it('should create a new user', (done) => {

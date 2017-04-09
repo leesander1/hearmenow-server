@@ -10,7 +10,7 @@ exports.generateTwilioToken = (req, res) => {
     var capability = new twilio.Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
     // allows users to make outgoing calls
-    capability.allowClientOutgoing(process.env.TWILIO_SID);
+    capability.allowClientOutgoing(process.env.TWILIO_APP_SID);
 
     // need to add more capabilities for internal calls
 

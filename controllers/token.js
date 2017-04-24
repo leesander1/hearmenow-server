@@ -12,7 +12,8 @@ exports.generateTwilioToken = (req, res) => {
     // allows users to make outgoing calls
     capability.allowClientOutgoing(process.env.TWILIO_APP_SID);
 
-    // need to add more capabilities for internal calls
+    // allows user to receive incoming calls
+    capability.allowClientIncoming("hearmwnow-client");
 
     var token = capability.generate();
     res.setHeader('content-type', 'application/json');

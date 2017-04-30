@@ -17,6 +17,9 @@ exports.connectCall = (req, res) => {
     if (phoneNumber != null) {
       twiml.dial({callerId: callerId}, numberDialer);
     }
+    else {
+      twiml.say('Thanks for using Hear Me Now');
+    }
 
 
     res.send(twiml.toString());

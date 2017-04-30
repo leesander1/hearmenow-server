@@ -18,7 +18,7 @@ exports.connectCall = (req, res) => {
       twiml.dial({callerId: callerId}, numberDialer);
     }
     else {
-      twiml.say('Thanks for using Hear Me Now');
+      twiml.dial('hearmwnow-client');
     }
 
 

@@ -375,7 +375,7 @@ exports.postForgot = (req, res, next) => {
   });
 };
 
-exports.getContacts (req, res) => {
+exports.getContacts = (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (err) { res.status(400).send('No contacts'); }
     res.status(200).send(user.profile.contacts);

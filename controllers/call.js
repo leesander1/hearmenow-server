@@ -13,6 +13,7 @@ exports.connectCall = (req, res) => {
         dial.number(phoneNumber);
     }
 
+    // function to dial the hearmenow client
     var hearmenowDialer = function(dial) {
       dial.client("hearmewnow_client");
     }
@@ -22,7 +23,6 @@ exports.connectCall = (req, res) => {
       twiml.dial({callerId: callerId}, numberDialer);
     }
     else {
-      console.log("Incoming call for the hearmewnow_client", req);
       twiml.dial({callerId: 4323498373}, hearmenowDialer);
     }
 

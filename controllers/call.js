@@ -23,7 +23,7 @@ exports.connectCall = (req, res) => {
       twiml.dial({callerId: callerId}, numberDialer);
     }
     else {
-      twiml.dial({callerId: 4323498373}, hearmenowDialer);
+      twiml.dial({callerId: callerId}, hearmenowDialer);
     }
 
 

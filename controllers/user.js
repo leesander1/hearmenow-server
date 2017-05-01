@@ -353,7 +353,7 @@ exports.postForgot = (req, res, next) => {
         auth: {
           user: process.env.SENDGRID_USER,
           pass: process.env.SENDGRID_PASSWORD
-        } 
+        }
       });
       const mailOptions = {
         to: user.email,
@@ -372,5 +372,12 @@ exports.postForgot = (req, res, next) => {
   ], (err) => {
     if (err) { return next(err); }
     res.redirect('/forgot');
+  });
+};
+
+exports.getContacts (req, res) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (err) { res.status(400).send('No contacts'); }
+    res.status(200).send(user.profile.contacts);
   });
 };

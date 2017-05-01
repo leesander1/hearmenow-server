@@ -13,13 +13,17 @@ exports.connectCall = (req, res) => {
         dial.number(phoneNumber);
     }
 
+    var hearmenowDialer = function(dial) {
+      dial.client("hearmewnow_client");
+    }
+
     // if a phonenumber was sent over with the request, dial the phonenumber
     if (phoneNumber != null) {
       twiml.dial({callerId: callerId}, numberDialer);
     }
     else {
       console.log("Incoming call for the hearmewnow_client", req);
-      twiml.dial({callerId: 4323498373}, "hearmewnow_client");
+      twiml.dial({callerId: 4323498373}, hearmenowDialer);
     }
 
 

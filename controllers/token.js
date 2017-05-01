@@ -13,7 +13,7 @@ exports.generateTwilioToken = (req, res) => {
     capability.allowClientOutgoing(process.env.TWILIO_APP_SID);
 
     // allows user to receive incoming calls
-    capability.allowClientIncoming("hearmwnow-client");
+    capability.allowClientIncoming("hearmewnow_client");
 
     var token = capability.generate();
     res.setHeader('content-type', 'application/json');

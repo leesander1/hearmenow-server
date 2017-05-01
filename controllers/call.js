@@ -18,7 +18,8 @@ exports.connectCall = (req, res) => {
       twiml.dial({callerId: callerId}, numberDialer);
     }
     else {
-      twiml.dial("hearmwnow-client");
+      console.log("Incoming call for the hearmewnow_client", req);
+      twiml.dial({callerId: callerId}, "hearmewnow_client");
     }
 
 

@@ -1,0 +1,9 @@
+{
+  "email": "test@test.com",
+  "name": {
+    "first": "Kevin",
+    "last": "Taing",
+  },
+  "phone": "14323498373",
+  "picture": "https://i.ytimg.com/vi/VYhUZRGzXo0/hqdefault.jpg"
+}

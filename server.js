@@ -64,7 +64,7 @@ app.set('port', process.env.PORT || 3000);
 
 /**
 * Switch from server-side to client-side routing/views
-* (Need to handle requests with res.json not res.render)
+* (Need to handle requests with res.status not res.render)
  */
 
 /**
@@ -79,28 +79,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: process.env.SESSION_SECRET,
-  store: new MongoStore({
-    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-    autoReconnect: true
-  })
-}));
+
 app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  // do logging
-  let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  console.log(chalk.blue('::New Request::'));
-  console.log(chalk.green('Client IP: '), ip);
-  next();
-});
+/*
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
   if (!req.user &&
@@ -115,6 +98,7 @@ app.use((req, res, next) => {
   }
   next();
 });
+*/
 //app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 /**
  * Primary app routes.
@@ -122,7 +106,7 @@ app.use((req, res, next) => {
 
 app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
-app.post('/login', userController.postLogin);
+app.post('/login', passportConfig.requireLogin, userController.postLogin);
 app.get('/logout', userController.logout);
 app.get('/forgot', userController.getForgot);
 app.post('/forgot', userController.postForgot);
@@ -143,14 +127,6 @@ app.post('/api/twilio', apiController.postTwilio);
 app.post('/api/generateToken', tokenController.generateTwilioToken);
 app.post('/api/connectCall', callController.connectCall);
 
-
- /**
-  * OAuth authentication routes. (Sign in)
-  */
- app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
- app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-   res.redirect(req.session.returnTo || '/');
- });
 
  /**
   * Error Handler.

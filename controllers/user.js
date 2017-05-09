@@ -1,8 +1,31 @@
 const async = require('async');
+const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
+const tokenController = require('./token');
+
+
+generateToken = (user) => {
+  return jwt.sign(user, process.env.SESSION_SECRET, {
+    expiresIn: 10080 // in seconds
+  });
+};
+
+exports.generateToken = (user) => {
+  return jwt.sign(user, process.env.SESSION_SECRET, {
+    expiresIn: 10080 // in seconds
+  });
+};
+
+// Set user info from request
+setUserInfo = (req) => {
+  return {
+    _id: req._id,
+    email: req.email
+  };
+};
 
 /**
  * GET /login
@@ -29,22 +52,14 @@ exports.postLogin = (req, res, next) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    req.flash('errors', errors);
-    return res.redirect('/login');
+    return res.status(400);
   }
-
-  passport.authenticate('local', (err, user, info) => {
-    if (err) { return next(err); }
-    if (!user) {
-      req.flash('errors', info);
-      return res.redirect('/login');
-    }
-    req.logIn(user, (err) => {
-      if (err) { return next(err); }
-      req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect(req.session.returnTo || '/');
-    });
-  })(req, res, next);
+  let userInfo = setUserInfo(req.user);
+  res.status(200).json({
+    token: 'JWT ' + generateToken(userInfo),
+    twiliotoken: tokenController.generateTwilioTokenOnLogin(),
+    user: userInfo
+  });
 };
 
 /**
@@ -74,39 +89,55 @@ exports.getSignup = (req, res) => {
  * Create a new local account.
  */
 exports.postSignup = (req, res, next) => {
-  req.assert('email', 'Email is not valid').isEmail();
-  req.assert('password', 'Password must be at least 4 characters long').len(4);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+  // Check for registration errors
+    const email = req.body.email;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const password = req.body.password;
 
-  const errors = req.validationErrors();
-
-  if (errors) {
-    req.flash('errors', errors);
-    return res.redirect('/signup');
-  }
-
-  const user = new User({
-    email: req.body.email,
-    password: req.body.password
-  });
-
-  User.findOne({ email: req.body.email }, (err, existingUser) => {
-    if (err) { return next(err); }
-    if (existingUser) {
-      req.flash('errors', { msg: 'Account with that email address already exists.' });
-      return res.redirect('/signup');
+    // Return error if no email provided
+    if (!email) {
+      return res.status(422).send({ error: 'You must enter an email address.'});
     }
-    user.save((err) => {
-      if (err) { return next(err); }
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
+
+    // Return error if full name not provided
+    if (!firstName || !lastName) {
+      return res.status(422).send({ error: 'You must enter your full name.'});
+    }
+
+    // Return error if no password provided
+    if (!password) {
+      return res.status(422).send({ error: 'You must enter a password.' });
+    }
+
+    User.findOne({ email: email }, function(err, existingUser) {
+        if (err) { return next(err); }
+
+        // If user is not unique, return error
+        if (existingUser) {
+          return res.status(422).send({ error: 'That email address is already in use.' });
         }
-        res.redirect('/');
-      });
+
+        // If email is unique and password was provided, create account
+        let user = new User({
+          email: email,
+          password: password,
+          name: { first: firstName, last: lastName }
+        });
+
+        user.save(function(err, user) {
+          if (err) { return next(err); }
+
+          // Subscribe member to Mailchimp list
+          // mailchimp.subscribeToNewsletter(user.email);
+
+          // Respond with JWT if user was created
+          res.status(201).json({
+            token: 'JWT ' + generateToken(user),
+            user: user
+          });
+        });
     });
-  });
 };
 
 /**
@@ -365,7 +396,6 @@ exports.postForgot = (req, res, next) => {
           If you did not request this, please ignore this email and your password will remain unchanged.\n`
       };
       transporter.sendMail(mailOptions, (err) => {
-        req.flash('info', { msg: `An e-mail has been sent to ${user.email} with further instructions.` });
         done(err);
       });
     }

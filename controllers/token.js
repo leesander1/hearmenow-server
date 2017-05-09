@@ -19,3 +19,16 @@ exports.generateTwilioToken = (req, res) => {
     res.setHeader('content-type', 'application/json');
     res.send(JSON.stringify({token:token}));
 };
+
+exports.generateTwilioTokenOnLogin = (req, res) => {
+    var capability = new twilio.Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+
+    // allows users to make outgoing calls
+    capability.allowClientOutgoing(process.env.TWILIO_APP_SID);
+
+    // allows user to receive incoming calls
+    capability.allowClientIncoming("hearmewnow_client");
+
+    var token = capability.generate();
+    return token;
+};

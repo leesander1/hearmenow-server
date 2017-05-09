@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
+const tokenController = require('./token');
 
 
 generateToken = (user) => {
@@ -56,6 +57,7 @@ exports.postLogin = (req, res, next) => {
   let userInfo = setUserInfo(req.user);
   res.status(200).json({
     token: 'JWT ' + generateToken(userInfo),
+    twiliotoken: tokenController.generateTwilioTokenOnLogin(),
     user: userInfo
   });
 };

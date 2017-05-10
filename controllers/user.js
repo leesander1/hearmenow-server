@@ -89,6 +89,11 @@ exports.getSignup = (req, res) => {
  * Create a new local account.
  */
 exports.postSignup = (req, res, next) => {
+    req.assert('email', 'Email is not valid').isEmail();
+    req.assert('password', 'Password cannot be blank').notEmpty();
+    req.sanitize('email').normalizeEmail({ remove_dots: false });
+
+    const errors = req.validationErrors();
   // Check for registration errors
     const email = req.body.email;
     const firstName = req.body.firstName;
@@ -134,6 +139,7 @@ exports.postSignup = (req, res, next) => {
           // Respond with JWT if user was created
           res.status(201).json({
             token: 'JWT ' + generateToken(user),
+            twiliotoken: tokenController.generateTwilioTokenOnLogin(),
             user: user
           });
         });

@@ -4,6 +4,7 @@ const sinon = require('sinon');
 require('sinon-mongoose');
 
 const User = require('../models/User');
+const Contact = require('../models/Contact');
 
 describe('User Model', () => {
   it('should create a new user', (done) => {
@@ -98,6 +99,126 @@ describe('User Model', () => {
     User.remove({ email: 'test@gmail.com' }, (err, result) => {
       userMock.verify();
       userMock.restore();
+      expect(err).to.be.null;
+      expect(result.nRemoved).to.equal(1);
+      done();
+    })
+  });
+});
+
+describe('Contact Model', () => {
+  it('should create a new user', (done) => {
+    const ContactMock = sinon.mock(new Contact({ email: 'test@gmail.com', phone: '1112223333' }));
+    const contact = ContactMock.object;
+
+    ContactMock
+      .expects('save')
+      .yields(null);
+
+    contact.save(function (err, result) {
+      ContactMock.verify();
+      ContactMock.restore();
+      expect(err).to.be.null;
+      done();
+    });
+  });
+
+  it('should return error if contact is not created', (done) => {
+    const ContactMock = sinon.mock(new Contact({ email: 'test@gmail.com', phone: '1112223333' }));
+    const contact = ContactMock.object;
+    const expectedError = {
+      name: 'ValidationError'
+    };
+
+    ContactMock
+      .expects('save')
+      .yields(expectedError);
+
+    contact.save((err, result) => {
+      ContactMock.verify();
+      ContactMock.restore();
+      expect(err.name).to.equal('ValidationError');
+      expect(result).to.be.undefined;
+      done();
+    });
+  });
+
+  it('should not create a contact with the unique email', (done) => {
+    const ContactMock = sinon.mock(new Contact({ email: 'test@gmail.com', phone: '1112223333' }));
+    const contact = ContactMock.object;
+    const expectedError = {
+      name: 'MongoError',
+      code: 11000
+    };
+
+    ContactMock
+      .expects('save')
+      .yields(expectedError);
+
+    contact.save((err, result) => {
+      ContactMock.verify();
+      ContactMock.restore();
+      expect(err.name).to.equal('MongoError');
+      expect(err.code).to.equal(11000);
+      expect(result).to.be.undefined;
+      done();
+    });
+  });
+
+  it('should find contact by email', (done) => {
+    const contactMock = sinon.mock(Contact);
+    const expectedContact = {
+      _id: '5700a128bd97c1341d8fb365',
+      email: 'test@gmail.com'
+    };
+
+    contactMock
+      .expects('findOne')
+      .withArgs({ email: 'test@gmail.com' })
+      .yields(null, expectedContact);
+
+    Contact.findOne({ email: 'test@gmail.com' }, (err, result) => {
+      contactMock.verify();
+      contactMock.restore();
+      expect(result.email).to.equal('test@gmail.com');
+      done();
+    })
+  });
+
+  it('should find contact by phone', (done) => {
+    const contactMock = sinon.mock(Contact);
+    const expectedContact = {
+      _id: '5700a128bd97c1341d8fb365',
+      phone: '1112223333'
+    };
+
+    contactMock
+      .expects('findOne')
+      .withArgs({ phone: '1112223333' })
+      .yields(null, expectedContact);
+
+    Contact.findOne({ phone: '1112223333' }, (err, result) => {
+      contactMock.verify();
+      contactMock.restore();
+      expect(result.phone).to.equal('1112223333');
+      done();
+    })
+  });
+
+  it('should remove contact by email', (done) => {
+    const contactMock = sinon.mock(Contact);
+    const expectedResult = {
+      nRemoved: 1
+    };
+
+    contactMock
+      .expects('remove')
+      .withArgs({ email: 'test@gmail.com' })
+      .yields(null, expectedResult);
+
+    Contact.remove({ email: 'test@gmail.com' }, (err, result) => {
+      contactMock.verify();
+      contactMock.restore();
       expect(err).to.be.null;
       expect(result.nRemoved).to.equal(1);
       done();
